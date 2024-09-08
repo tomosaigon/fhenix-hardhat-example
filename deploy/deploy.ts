@@ -25,8 +25,32 @@ const func: DeployFunction = async function () {
     log: true,
     skipIfAlreadyDeployed: false,
   });
-
   console.log(`Counter contract: `, counter.address);
+
+  const WrappingERC20 = await deploy("WrappingERC20", {
+    from: signer.address,
+    args: ["Test Token", "TST"],
+    log: true,
+    skipIfAlreadyDeployed: false
+  });
+  console.log(`WrappingERC20 contract: `, WrappingERC20.address);
+
+  // const Vault = await deploy("Vault", {
+  //   from: signer.address,
+  //   args: [],
+  //   log: true,
+  //   skipIfAlreadyDeployed: false
+  // });
+  // console.log(`Vault contract: `, Vault.address);  
+
+  const VickreyAuction = await deploy("VickreyAuction", {
+    from: signer.address,
+    args: [],
+    log: true,
+    skipIfAlreadyDeployed: false
+  });
+  console.log(`VickreyAuction contract: `, VickreyAuction.address);  
+
 };
 
 export default func;
